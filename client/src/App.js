@@ -8,7 +8,7 @@ import NavMain from './components/NavMain.js';
 import Home from './pages/Home.js';
 import Watchlist from './components/Watchlist.js';
 
-const { Header, Footer, Content } = Layout;
+const { Header, Content } = Layout;
 
 export default function App() {
   return (
