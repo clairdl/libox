@@ -4,10 +4,20 @@ import tmdb from '../../tmdb/search/searchMovie';
 
 const router = express.Router();
 
-router.get('/search', async () => {
-  const result = await tmdb.searchMovie({ query: 'star wars', pageNumber: 1 });
+router.get('/search', (req, res) => {
+  console.log(req.query.query);
 
-  console.log(result);
+  // Typescript stuff
+  const query = typeof req.query.query === 'string' ? req.query.query : undefined;
+
+  tmdb.searchMovie({ query, pageNumber: 1 })
+    .then((response) => {
+      console.log(response.data);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log(err, 'wtf lol');
+    });
 });
 
 export default router;
