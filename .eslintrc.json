@@ -23,6 +23,7 @@
   "rules": {
     "max-len": ["error", { "code": 120, "ignoreComments": true }],
     "import/extensions": "off",
+    "import/no-unresolved": "off",
     "no-console": "off"
     // "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   }
