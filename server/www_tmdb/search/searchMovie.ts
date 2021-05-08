@@ -23,7 +23,6 @@ module.exports = {
         &query=${query}
         &page=${pageNumber}`,
     );
-
     console.log(res);
   },
 };
