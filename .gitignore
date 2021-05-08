@@ -5,6 +5,10 @@ package-lock.json
 # environment variables (API keys)
 .env
 
+
+# production build
+/server/dist
+
 # misc
 .DS_Store
 .env.local
