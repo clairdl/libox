@@ -1,13 +1,12 @@
-import { Grommet, Header } from 'grommet';
-import { grommet } from 'grommet/themes';
+import { Grommet } from 'grommet';
 
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Navbar from './components/Nav/Navbar.js';
-import Homep from './pages/Home.js';
-import Watchlist from './pages/Watchlist.js';
-import Search from './pages/Search.js';
+import Navbar from './components/Nav/Navbar';
+import Homep from './pages/Home';
+import Watchlist from './pages/Watchlist';
+import Search from './pages/Search';
 
 const myTheme = {
   anchor: {
@@ -21,8 +20,7 @@ export default function App() {
   return (
     <Grommet theme={myTheme}>
       <Router>
-        
-          <Navbar />
+        <Navbar />
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
