@@ -1,42 +1,43 @@
+import { Grommet, Header } from 'grommet';
+import { grommet } from 'grommet/themes';
+
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import './App.css';
-
-import { Layout } from 'antd';
-import NavMain from './components/Nav/NavMain.js';
-
-import Home from './pages/Home.js';
-import Search from './pages/Search.js';
+import Navbar from './components/Nav/Navbar.js';
+import Homep from './pages/Home.js';
 import Watchlist from './pages/Watchlist.js';
+import Search from './pages/Search.js';
 
-const { Header, Content } = Layout;
+const myTheme = {
+  anchor: {
+    hover: {
+      textDecoration: 'none',
+    },
+  },
+};
 
 export default function App() {
   return (
-    <Router>
-      <div>
-        <Layout>
-          {/* <Header> */}
-            <NavMain />
-          {/* </Header> */}
-          <Content>
-            {/* A <Switch> looks through its children <Route>s and
+    <Grommet theme={myTheme}>
+      <Router>
+        
+          <Navbar />
+
+        {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/watchlist">
-                <Watchlist />
-              </Route>
-              <Route path="/search">
-                <Search />
-              </Route>
-            </Switch>
-          </Content>
-        </Layout>
-      </div>
-    </Router>
+        <Switch>
+          <Route exact path="/">
+            <Homep />
+          </Route>
+          <Route path="/watchlist">
+            <Watchlist />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+        </Switch>
+      </Router>
+    </Grommet>
   );
 }
