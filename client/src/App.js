@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 
 import { Layout } from 'antd';
-import NavMain from './components/NavMain.js';
+import NavMain from './components/Nav/NavMain.js';
 
 import Home from './pages/Home.js';
 import Search from './pages/Search.js';
@@ -17,9 +17,9 @@ export default function App() {
     <Router>
       <div>
         <Layout>
-          <Header>
+          {/* <Header> */}
             <NavMain />
-          </Header>
+          {/* </Header> */}
           <Content>
             {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}

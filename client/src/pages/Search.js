@@ -1,19 +1,14 @@
 import React from 'react';
 
-export default class Search extends React.Compoent {
+export default class Search extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      query: ''
-    };
   }
-  
-  // Layout here
+
   render() {
     return (
       <div>
-        <h1>Watchlist</h1>
+        <h1>Search</h1>
       </div>
     );
   }
