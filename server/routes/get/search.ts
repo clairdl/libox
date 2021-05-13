@@ -5,18 +5,16 @@ import tmdb from '../../tmdb/search/searchMovie';
 const router = express.Router();
 
 router.get('/search', (req, res) => {
-  console.log(req.query.query);
-
-  // Typescript stuff
+  // Hacky solution for TS error
   const query = typeof req.query.query === 'string' ? req.query.query : undefined;
 
   tmdb.searchMovie({ query, pageNumber: 1 })
-    .then((response) => {
-      console.log(response.data);
-      res.send(response.data);
+    .then(({data}) => {
+      // console.log(data);
+      res.json(data)
     })
     .catch((err) => {
-      console.log(err, 'wtf lol');
+      console.log(err);
     });
 });
 

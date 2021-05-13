@@ -3,7 +3,7 @@ import { Text } from 'grommet';
 
 const NoResults = () => (
   <div>
-    <Text>no results :/</Text>
+    <Text>No results. Check your spelling or try again later :/</Text>
   </div>
 );
 

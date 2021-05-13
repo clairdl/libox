@@ -2,8 +2,9 @@
 import express from 'express';
 import morgan from 'morgan';
 import getRoutes from './routes/get/search';
+import dotenv from 'dotenv';
 
-require('dotenv').config();
+dotenv.config();
 
 // Init
 const app = express();
@@ -18,5 +19,5 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', getRoutes);
 
 // Listen to provided port
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port: ${port}`));
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
