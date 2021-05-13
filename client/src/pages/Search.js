@@ -1,39 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import SearchListItem from '../components/Search/SearchListItem';
+import SearchList from '../components/Search/SearchList';
+
 import NoResults from '../components/Search/NoResults';
 
 const Search = () => {
   const [data, setData] = useState({ rows: [], totalResults: null });
-  const { search } = useLocation();
+  const { search: query } = useLocation();
 
   // Every time the search query updates, we fetch again
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`/search${search}`);
+      const res = await axios.get(`/search${query}`);
       setData({
         rows: res.data.results,
         totalResults: res.data.total_results,
       });
     };
     fetchData();
-  }, [search]);
+  }, [query]);
 
   const noResults = data.totalResults === 0;
-  
-  const listItems = data.rows.map((el) => (
-    <SearchListItem
-      title={el.title}
-      date={el.release_date}
-      desc={el.overview}
-      poster={el.poster_path}
-    />
-  ));
 
   return (
     <div>
-      <ul>{noResults ? <NoResults /> : listItems}</ul>
+      {noResults ? (
+        <NoResults />
+      ) : (
+        <SearchList results={data.rows} />
+      )}
     </div>
   );
 };
