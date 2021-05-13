@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import SearchListItem from '../components/Search/SearchListItem';
 import NoResults from '../components/Search/NoResults';
 
 const Search = () => {
@@ -10,7 +11,6 @@ const Search = () => {
   // Every time the search query updates, we fetch again
   useEffect(() => {
     const fetchData = async () => {
-      console.log('fetchData invoked');
       const res = await axios.get(`/search${search}`);
       setData({
         rows: res.data.results,
@@ -20,13 +20,20 @@ const Search = () => {
     fetchData();
   }, [search]);
 
-  const listItems = data.rows.map((e) => <li key={e.id}>{e.title}</li>);
-  const noResults = data.totalResults === 0 ? <NoResults /> : null;
+  const noResults = data.totalResults === 0;
+  
+  const listItems = data.rows.map((el) => (
+    <SearchListItem
+      title={el.title}
+      date={el.release_date}
+      desc={el.overview}
+      poster={el.poster_path}
+    />
+  ));
 
   return (
     <div>
-      {noResults}
-      <ul>{listItems}</ul>
+      <ul>{noResults ? <NoResults /> : listItems}</ul>
     </div>
   );
 };
