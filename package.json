@@ -1,8 +1,8 @@
 {
   "name": "libox",
-  "author": "",
+  "author": "clairdl",
   "version": "1.0.0",
-  "description": "",
+  "description": "tmdb/letterboxd inspired webapp w/ TypeScript to learn Redux ",
   "license": "ISC",
   "main": "",
   "scripts": {
