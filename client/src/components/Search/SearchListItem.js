@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -10,63 +9,80 @@ import {
   CardFooter,
   Heading,
   Image,
-  Paragraph,
   Text,
   Grid,
 } from 'grommet';
 
-import { FormAdd, ShareOption } from 'grommet-icons';
+import { Add } from 'grommet-icons';
 
 const SearchListItem = (props) => {
   const { title, desc, poster, date } = props;
   return (
-    <Box pad='medium' align='start'>
-      <Card elevation='medium'>
-        <Box direction='row' pad={{ right: 'medium' }}>
-          <CardBody pad={{ right: 'medium' }}>
-            <Image
-              fit='cover'
-              src={`http://image.tmdb.org/t/p/w185/${poster}`}
-              a11yTitle={`${title} poster`}
-            />
-          </CardBody>
-          <Box direction='column'>
-            <Box direction='row'>
-              <Heading
-                level='3'
-                size='small'
-                alignSelf='end'
-                margin={{ bottom: 'none' }}
-              >
-                {title}
-              </Heading>
-              <Text alignSelf='end' color='dark-4' margin={{ left: 'small' }}>
-                {date ? date.slice(0, 4) : null}
-              </Text>
-            </Box>
-            <Grid border='top' margin={{ vertical: 'xsmall' }} />
-            <Paragraph size='small' margin={{ top: 'none' }}>
-              {desc}
-            </Paragraph>
-            <CardFooter
-              direction='row'
-              justify='between'
-              align='end'
-              flex='grow'
-              margin={{ bottom: 'small' }}
-            >
-              <Button
-                icon={<FormAdd />}
-                hoverIndicator
-                size='small'
-                label='watchlist'
-              />
-              <Button icon={<ShareOption color='plain' />} hoverIndicator />
-            </CardFooter>
-          </Box>
+    // TODO: split this component up into smaller, more reusable components
+    <Card
+      border={{
+        color: 'brand',
+        size: 'xsmall',
+        style: 'solid',
+        side: 'all',
+      }}
+      elevation='small'
+      direction='row'
+      pad={{ right: 'medium' }}
+      margin={{ vertical: 'xsmall' }}
+    >
+      <CardBody
+        width={{ min: '209px', max: '209px' }}
+        pad={{ right: 'medium' }}
+      >
+        <Image
+          fit='cover'
+          fallback='https://i.postimg.cc/YS19gQS3/Screenshot-2021-05-13-at-23-29-29.png'
+          // http://image.tmdb.org/t/p/w185/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg
+          src={`http://image.tmdb.org/t/p/w185${poster}`}
+          a11yTitle={`${title} poster`}
+        />
+      </CardBody>
+      <Box direction='column'>
+        <Box direction='row'>
+          <Heading
+            level='3'
+            size='small'
+            alignSelf='end'
+            margin={{ bottom: 'none' }}
+          >
+            {title}
+          </Heading>
+          <Text alignSelf='end' color='dark-4' margin={{ left: 'small' }}>
+            {date ? date.slice(0, 4) : null}
+          </Text>
         </Box>
-      </Card>
-    </Box>
+        <Grid border='top' margin={{ vertical: 'xsmall' }} />
+        <Box direction='column'>
+          <Text wordBreak='break-word' size='small' margin={{ top: 'none' }}>
+            {desc}
+          </Text>
+          <CardFooter
+            direction='row'
+            justify='start'
+            margin={{ top: 'medium' }}
+          >
+            <Button
+              icon={<Add />}
+              size='small'
+              label='watchlist'
+              onClick={() => {}}
+            />
+            <Button
+              icon={<Add />}
+              size='small'
+              label='mark as seen'
+              onClick={() => {}}
+            />
+          </CardFooter>
+        </Box>
+      </Box>
+    </Card>
   );
 };
 
