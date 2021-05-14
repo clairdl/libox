@@ -1,16 +1,10 @@
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers/index';
+import { configureStore } from '@reduxjs/toolkit';
+import searchReducer from './slices/searchSlice';
 
-
-const initialState = {};
-
-const middleware = [thunk];
-
-const store = createStore(
-  rootReducer,
-  initialState,
-  applyMiddleware(...middleware)
-);
+const store = configureStore({
+  reducer: {
+    search: searchReducer,
+  },
+});
 
 export default store;
