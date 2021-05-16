@@ -1,12 +1,18 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Box } from 'grommet';
+import { useSelector } from 'react-redux';
 
+// components
+import { Box } from 'grommet';
 import SearchListItem from './SearchListItem';
 
-const SearchList = ({ results }) => {
-  const listItems = results.map((el) => (
+// redux
+import { selectAllMovies } from '../../slices/searchSlice';
+
+const SearchList = () => {
+  const movies = useSelector(selectAllMovies);
+
+  const listItems = movies.map((el) => (
     <SearchListItem
       title={el.title}
       date={el.release_date}
@@ -15,14 +21,7 @@ const SearchList = ({ results }) => {
     />
   ));
 
-  return (
-    <Box pad={{ horizontal: '15vw', vertical: 'small' }}>{listItems}</Box>
-  );
-};
-
-SearchList.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  results: PropTypes.object.isRequired,
+  return <Box pad={{ horizontal: '15vw', vertical: 'small' }}>{listItems}</Box>;
 };
 
 export default SearchList;
