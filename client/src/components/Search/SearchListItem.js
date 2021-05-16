@@ -59,14 +59,10 @@ const SearchListItem = (props) => {
         </Box>
         <Grid border='top' margin={{ vertical: 'xsmall' }} />
         <Box direction='column'>
-          <Text wordBreak='break-word' size='small' margin={{ top: 'none' }}>
+          <Text wordBreak='break-word' size='small'>
             {desc}
           </Text>
-          <CardFooter
-            direction='row'
-            justify='start'
-            margin={{ top: 'medium' }}
-          >
+          <CardFooter direction='row' justify='start' pad={{ vertical: 'small' }}>
             <Button
               icon={<Add />}
               size='small'
@@ -76,7 +72,7 @@ const SearchListItem = (props) => {
             <Button
               icon={<Add />}
               size='small'
-              label='mark as seen'
+              label='seen'
               onClick={() => {}}
             />
           </CardFooter>
