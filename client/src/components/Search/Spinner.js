@@ -3,9 +3,11 @@ import React from 'react';
 import { Box, Spinner, Text } from 'grommet';
 
 const Simple = () => (
-  <Box align='center' direction='row' gap='small' pad='small'>
+  <Box justify='center' direction='row' gap='small' pad={{ top: 'xlarge' }}>
     <Spinner />
-    <Text>searching the jedi archives...</Text>
+    <Text size='large'>
+      Searching the Jedi Archives...
+    </Text>
   </Box>
 );
 
