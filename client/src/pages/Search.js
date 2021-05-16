@@ -1,37 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+// libs
+import React from 'react';
+import { useSelector } from 'react-redux';
+// redux
+import { selectTotalResults } from '../slices/searchSlice';
+// components
 import SearchList from '../components/Search/SearchList';
-
 import NoResults from '../components/Search/NoResults';
 
 const Search = () => {
-  const [data, setData] = useState({ rows: [], totalResults: null });
-  const { search: query } = useLocation();
+  const totalResults = useSelector(selectTotalResults);
 
-  // Every time the search query updates, we fetch again
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(`/search${query}`);
-      setData({
-        rows: res.data.results,
-        totalResults: res.data.total_results,
-      });
-    };
-    fetchData();
-  }, [query]);
-
-  const noResults = data.totalResults === 0;
-
-  return (
-    <div>
-      {noResults ? (
-        <NoResults />
-      ) : (
-        <SearchList results={data.rows} />
-      )}
-    </div>
-  );
+  return <div>{!totalResults ? <NoResults /> : <SearchList />}</div>;
 };
 
 export default Search;
