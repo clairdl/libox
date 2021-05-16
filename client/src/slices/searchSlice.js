@@ -32,12 +32,16 @@ export const searchSlice = createSlice({
       state.query = action.payload;
     },
   },
-  extraReducers: {
-    [getMovies.fulfilled]: (state, action) => {
-      // if fulfilled, update state
-      state.movies = action.payload.results;
-      state.totalResults = action.payload.total_results;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getMovies.pending, (state) => {
+        state.status = 'pending';
+      })
+      .addCase(getMovies.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.movies = action.payload.results;
+        state.totalResults = action.payload.total_results;
+      });
   },
 });
 
@@ -49,6 +53,7 @@ export default searchSlice.reducer;
 
 // Selectors
 export const selectQuery = (state) => state.search.query;
+export const selectStatus = (state) => state.search.status;
 export const selectAllMovies = (state) => state.search.movies;
 export const selectTotalResults = (state) => state.search.totalResults;
 export const selectMovieById = (state, id) =>
