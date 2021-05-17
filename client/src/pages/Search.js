@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 // redux
 import { selectStatus, selectTotalResults } from '../slices/searchSlice';
 // components
-import Spinner from '../components/Search/Spinner';
+import Spinner from '../components/generic/Spinner';
 import SearchList from '../components/Search/SearchList';
-import NoResults from '../components/Search/NoResults';
+import NoResults from '../components/generic/NoResults';
 
 const Search = () => {
   const totalResults = useSelector(selectTotalResults);
