@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import placeholderMoviePoster from '../../assets/placeholderMoviePoster.png';
 
 import {
   Box,
@@ -12,11 +13,12 @@ import {
   Text,
   Grid,
 } from 'grommet';
-
 import { Add } from 'grommet-icons';
 
+import AddWatchlistBtn from '../generic/AddWatchlistBtn';
+
 const SearchListItem = (props) => {
-  const { title, desc, poster, date } = props;
+  const { id, title, desc, poster, date } = props;
   return (
     // TODO: split this component up into smaller, more reusable components
     <Card
@@ -37,9 +39,9 @@ const SearchListItem = (props) => {
       >
         <Image
           fit='cover'
-          fallback='https://i.postimg.cc/YS19gQS3/Screenshot-2021-05-13-at-23-29-29.png'
+          fallback={placeholderMoviePoster}
           // http://image.tmdb.org/t/p/w185/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg
-          src={`http://image.tmdb.org/t/p/w185${poster}`}
+          src={`http://image.tmdb.org/t/p/w500${poster}`}
           a11yTitle={`${title} poster`}
         />
       </CardBody>
@@ -62,13 +64,12 @@ const SearchListItem = (props) => {
           <Text wordBreak='break-word' size='small'>
             {desc}
           </Text>
-          <CardFooter direction='row' justify='start' pad={{ vertical: 'small' }}>
-            <Button
-              icon={<Add />}
-              size='small'
-              label='watchlist'
-              onClick={() => {}}
-            />
+          <CardFooter
+            direction='row'
+            justify='start'
+            pad={{ vertical: 'small' }}
+          >
+            <AddWatchlistBtn id={id} />
             <Button
               icon={<Add />}
               size='small'
