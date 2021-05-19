@@ -6,13 +6,14 @@ import { Box } from 'grommet';
 import SearchListItem from './SearchListItem';
 
 // redux
-import { selectAllMovies } from '../../slices/searchSlice';
+import { selectAllMovies } from '../../slices/search/searchSlice';
 
 const SearchList = () => {
   const movies = useSelector(selectAllMovies);
 
   const listItems = movies.map((el) => (
     <SearchListItem
+      id={el.id}
       title={el.title}
       date={el.release_date}
       desc={el.overview}

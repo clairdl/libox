@@ -8,7 +8,11 @@ import { Search } from 'grommet-icons';
 import { Box, TextInput } from 'grommet';
 
 // redux
-import { updateQuery, selectQuery, getMovies } from '../../slices/searchSlice';
+import {
+  updateQuery,
+  selectQuery,
+  searchMovies,
+} from '../../slices/search/searchSlice';
 
 const NavbarSearch = () => {
   // useDispatch returns a reference to the dispatch function from the Redux store
@@ -16,15 +20,15 @@ const NavbarSearch = () => {
   // useHistory hook returns the history instance
   const history = useHistory();
 
-  // query source of truth
+  // query from Redux
   const query = useSelector(selectQuery);
 
   const handleSubmit = ({ code }) => {
-    if (code === 'Enter') {
+    if (code === 'Enter' && query) {
       // update URL route, thus rendering the 'Search' page
       history.push(`/search?query=${query}`);
       // dispatch thunk, updating redux with search results
-      dispatch(getMovies());
+      dispatch(searchMovies());
     }
   };
 
