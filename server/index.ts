@@ -1,7 +1,7 @@
 // Setup
 import express from 'express';
 import morgan from 'morgan';
-import getRoutes from './routes/get/search';
+import getRoutes from './routes/get';
 import dotenv from 'dotenv';
 
 dotenv.config();
