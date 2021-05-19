@@ -1,27 +1,23 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+// Thunks
+export const searchMovies = createAsyncThunk(
+  'search/searchMovies',
+  async (payload, store) => {
+    const res = await axios.get(
+      `/search?query=${store.getState().search.query}`
+    );
+    return res.data;
+  }
+);
+
 const initialState = {
   query: '',
   status: 'idle',
   movies: [],
   totalResults: null,
 };
-
-// Thunks
-export const getMovies = createAsyncThunk(
-  'search/getMovies',
-  async (payload, store) => {
-    try {
-      const res = await axios.get(
-        `/search?query=${store.getState().search.query}`
-      );
-      return res.data;
-    } catch (err) {
-      return err;
-    }
-  }
-);
 
 // Create slice
 export const searchSlice = createSlice({
@@ -34,10 +30,10 @@ export const searchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getMovies.pending, (state) => {
+      .addCase(searchMovies.pending, (state) => {
         state.status = 'pending';
       })
-      .addCase(getMovies.fulfilled, (state, action) => {
+      .addCase(searchMovies.fulfilled, (state, action) => {
         state.status = 'idle';
         state.movies = action.payload.results;
         state.totalResults = action.payload.total_results;
