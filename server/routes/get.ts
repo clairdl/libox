@@ -15,16 +15,18 @@ router.get('/search', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.send(err)
     });
 });
 
-router.get('/movies/:id', (req, res) => {
+router.get('/movie/:id', (req, res) => {
   getMovieDetails({ id: parseInt(req.params.id, 10) })
     .then(({ data }) => {
       res.json(data)
     })
     .catch((err) => {
       console.log(err);
+      res.send(err)
     });
 });
 

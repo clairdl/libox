@@ -1,5 +1,5 @@
 import React from 'react';
-import WatchlistTable from '../components/Watchlist/Table';
+import WatchlistTable from '../components/Watchlist/WatchlistTable';
 
 export default function Watchlist() {
   return (
