@@ -3,16 +3,21 @@ export interface ListMovie {
   poster: null | string,
   title: string,
   releaseDate: string,
-  rating: null | number,
   runtime: number,
 }
 
 export interface InitialState {
   watchlist: Array<ListMovie>,
   watchedlist: Array<ListMovie>,
+  status: 'idle' | 'pending' | 'fulfilled' | 'rejected'
+}
+
+export interface GetMovieDetailsParams {
+  listId: 'watchlist' | 'watchedlist',
+  id: number
 }
 
 export interface AddMoviePayload {
-  listId: string,
+  listId: 'watchlist' | 'watchedlist',
   movie: ListMovie
 }
