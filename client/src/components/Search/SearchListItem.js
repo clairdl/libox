@@ -4,7 +4,6 @@ import placeholderMoviePoster from '../../assets/placeholderMoviePoster.png';
 
 import {
   Box,
-  Button,
   Card,
   CardBody,
   CardFooter,
@@ -13,9 +12,9 @@ import {
   Text,
   Grid,
 } from 'grommet';
-import { Add } from 'grommet-icons';
 
 import AddWatchlistBtn from '../generic/AddWatchlistBtn';
+import AddSeenBtn from '../generic/AddSeenBtn';
 
 const SearchListItem = (props) => {
   const { id, title, desc, poster, date } = props;
@@ -70,12 +69,7 @@ const SearchListItem = (props) => {
             pad={{ vertical: 'small' }}
           >
             <AddWatchlistBtn id={id} />
-            <Button
-              icon={<Add />}
-              size='small'
-              label='seen'
-              onClick={() => {}}
-            />
+            <AddSeenBtn id={id} />
           </CardFooter>
         </Box>
       </Box>

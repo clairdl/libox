@@ -13,6 +13,7 @@ const SearchList = () => {
 
   const listItems = movies.map((el) => (
     <SearchListItem
+      key={el.id}
       id={el.id}
       title={el.title}
       date={el.release_date}
