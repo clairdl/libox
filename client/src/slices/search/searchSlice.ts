@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { RootState } from '../../store';
 
 // Thunks
 export const searchMovies = createAsyncThunk(
@@ -48,9 +49,7 @@ export const { updateQuery } = searchSlice.actions;
 export default searchSlice.reducer;
 
 // Selectors
-export const selectQuery = (state) => state.search.query;
-export const selectStatus = (state) => state.search.status;
-export const selectAllMovies = (state) => state.search.movies;
-export const selectTotalResults = (state) => state.search.totalResults;
-export const selectMovieById = (state, id) =>
-  state.search.movies.find((el) => el.id === id);
+export const selectQuery = (state: RootState) => state.search.query;
+export const selectStatus = (state: RootState) => state.search.status;
+export const selectAllMovies = (state: RootState) => state.search.movies;
+export const selectTotalResults = (state: RootState) => state.search.totalResults;
