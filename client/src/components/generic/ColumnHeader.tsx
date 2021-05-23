@@ -7,14 +7,7 @@ interface Props {
 const ColumnHeader = (props: Props) => {
   return (
     <div>
-      <Text
-        textAlign='start'
-        alignSelf='start'
-        margin={{ horizontal: 'large' }}
-        weight='bold'
-      >
-        {props.label}
-      </Text>
+      <Text weight='bold'>{props.label}</Text>
     </div>
   );
 };
