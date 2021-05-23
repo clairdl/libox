@@ -1,32 +1,90 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 // core libs
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 
 // components
-import { Button } from 'grommet';
-import { Add } from 'grommet-icons';
+import {
+  Button,
+  Box,
+  Text,
+  ThemeType,
+  ButtonType,
+  ButtonProps,
+  ThemeContext,
+} from 'grommet';
+import { Add, Trash } from 'grommet-icons';
 
 // redux
-import { getMovieDetails } from '../../slices/list/listSlice';
+import {
+  addMovieToWatchlist,
+  selectMovieFromWatchlist,
+  removeFromWatchlist,
+} from '../../slices/list/listSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 type AddWatchlistBtnProps = {
   id: number;
 };
 
-export const AddWatchlistBtn = (props: AddWatchlistBtnProps) => {
-  const dispatch = useDispatch();
+const addTheme: ThemeType = {
+  button: {
+    color: 'accent-1',
+  },
+};
 
-  const onClickHandler = () => {
-    dispatch(getMovieDetails({ listId: 'watchlist', id: props.id }));
+const removeTheme: ThemeType = {
+  button: {
+    color: 'accent-2',
+  },
+};
+
+export const AddWatchlistBtn = ({ id }: AddWatchlistBtnProps) => {
+  // init
+  const dispatch = useAppDispatch();
+  // const watchlistHasMovie = useAppSelector((state) => {
+  //   return selectMovieFromWatchlist(state, id);
+  // });
+
+  const [watchlistHasMovie, setWatchlistHasMovie] = useState(
+    useAppSelector((state) => {
+      return selectMovieFromWatchlist(state, id);
+    })
+  );
+
+  const handleAddToWatchlist = () => {
+    dispatch(addMovieToWatchlist({ listId: 'watchlist', id: id }));
+    setWatchlistHasMovie(!watchlistHasMovie)
   };
 
+  const handleRemoveFromWatchlist = () => {
+    dispatch(removeFromWatchlist(id));
+    setWatchlistHasMovie(!watchlistHasMovie)
+  };
+  console.log(watchlistHasMovie);
+
   return (
-    <Button
-      icon={<Add />}
-      size='small'
-      label='watchlist'
-      onClick={onClickHandler}
-    />
+    <>
+      {watchlistHasMovie ? (
+        <ThemeContext.Extend value={removeTheme}>
+          <Button
+            icon={<Trash />}
+            size='small'
+            label='watchlist'
+            onClick={handleRemoveFromWatchlist}
+          />
+        </ThemeContext.Extend>
+      ) : (
+        <ThemeContext.Extend value={addTheme}>
+          <Button
+            icon={<Add />}
+            size='small'
+            label='watchlist'
+            onClick={handleAddToWatchlist}
+          />
+        </ThemeContext.Extend>
+      )}
+    </>
   );
 };
 
