@@ -1,5 +1,10 @@
+// Shared
+export type MovieId = number;
+export type MovieRating = number;
+
+
+// LIST SLICE
 export interface MovieListItem {
-  id: number,
   posterPath: string | null
   title: string
   releaseDate: string
@@ -8,7 +13,7 @@ export interface MovieListItem {
   rating: number | null
 }
 
-export interface InitialState {
+export interface InitialStateList {
   status: 'idle' | 'pending' | 'fulfilled' | 'rejected',
   watchlist: MovieListItem[],
   watchedlist: MovieListItem[],
@@ -23,6 +28,19 @@ export interface AddMoviePayload {
   listId: 'watchlist' | 'watchedlist',
   movie: MovieListItem
 }
+
+
+// RATING SLICE
+export interface InitialStateRating {
+  idToRatingMap: Record<MovieId, MovieRating>
+}
+
+export interface CreateOrUpdateRatingPayload {
+  id: number
+  rating: number
+}
+
+
 
 
 // export interface MovieDetails {
