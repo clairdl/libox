@@ -3,18 +3,30 @@ import React, { useState } from 'react';
 import { FormDown } from 'grommet-icons';
 
 import { Box, List, DropButton, Text } from 'grommet';
+import { useAppDispatch } from '../../hooks';
+import {
+  createOrUpdateRating,
+  deleteRating,
+} from '../../slices/rating/ratingSlice';
 
 type RatingBtnProps = {
-  rating: null | number;
+  id: number;
+  rating: number | null | undefined;
 };
 
 const options = ['remove', 1, 2, 3, 4, 5];
-const RatingBtn = (props: RatingBtnProps) => {
-  const [rating, setRating] = useState(props.rating);
+
+const RatingBtn = ({ id, rating }: RatingBtnProps) => {
+  const dispatch = useAppDispatch();
+
   const [open, setOpen] = useState(false);
 
   const onClickHandler = (e: any) => {
-    e.item === 'remove' ? setRating(null) : setRating(e.item);
+    console.log(e.datum);
+    e.item === 'remove'
+      ? dispatch(deleteRating(id))
+      : dispatch(createOrUpdateRating({ id, rating: e.item }));
+
     setOpen(false);
   };
 

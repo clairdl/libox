@@ -5,7 +5,7 @@ import { RootState } from '../../store';
 // Thunks
 export const searchMovies = createAsyncThunk(
   'search/searchMovies',
-  async (payload, store) => {
+  async (payload, store: any) => {
     const res = await axios.get(
       `/search?query=${store.getState().search.query}`
     );
