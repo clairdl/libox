@@ -1,10 +1,11 @@
-interface MovieListItem {
+export interface MovieListItem {
   id: number,
   posterPath: string | null
   title: string
   releaseDate: string
   runtime: number | null
   revenue: number
+  rating: number | null
 }
 
 export interface InitialState {
@@ -20,20 +21,8 @@ export interface GetMovieDetailsParams {
 
 export interface AddMoviePayload {
   listId: 'watchlist' | 'watchedlist',
-  movie: MovieDetails
+  movie: MovieListItem
 }
-
-
-
-// export interface User {
-//   id: number,
-//   username: string,
-//   password: string,
-//   lists: Record<ListId, MovieListItem>
-//   ratings: Record<MovieId, RatingInfo>
-
-// }
-
 
 
 // export interface MovieDetails {
@@ -50,25 +39,3 @@ export interface AddMoviePayload {
 //   userRating: number | null
 //   belongsToLists: string[] | null
 // }
-
-// interface RatingInfo {
-//   title: string
-//   userRating: number
-// }
-
-/*
-User to Movie
-1 to many
-
-Watchlist to Movie
-1 to many
-
-Watchedlist to Movie
-1 to many
-
-User to Lists
-1 to many
-
-Movie to Rating
-1 to 1
-*/

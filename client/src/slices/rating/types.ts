@@ -1,15 +1,9 @@
 // Initial state
-// type MovieId = number;
-// type MovieRating = number;
-
-// export interface InitialState {
-//   ratings: Record<MovieId, MovieRating>
-// }
+export type MovieId = number;
+export type MovieRating = number;
 
 export interface InitialState {
-  ratings: {
-    [key: string]: number,
-  }[]
+  idToRatingMap: Record<MovieId, MovieRating>
 }
 
 // Action object payloads
@@ -18,6 +12,3 @@ export interface CreateOrUpdateRatingPayload {
   rating: number
 }
 
-export interface DeleteRatingPayload {
-  id: number
-}
