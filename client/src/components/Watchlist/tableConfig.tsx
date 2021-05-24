@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import * as React from 'react';
 
-import { MovieListItem } from '../../slices/list/types';
+import { MovieListItem } from '../../slices/list/listTypes';
 
 import TablePoster from './TablePoster';
 import RatingBtn from '../generic/RatingBtn';

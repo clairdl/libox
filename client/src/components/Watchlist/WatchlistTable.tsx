@@ -6,7 +6,7 @@ import { columns } from './tableConfig';
 import { useAppSelector } from '../../hooks';
 import { selectWatchlist } from '../../slices/list/listSlice';
 import { selectEntireRatingMap } from '../../slices/rating/ratingSlice';
-import { MovieListItem } from '../../slices/list/types';
+import { MovieListItem } from '../../slices/list/listTypes';
 
 // const SortableIcon = () => (
 //   <Blank color='text-xweak' opacity='0.3'>
@@ -32,7 +32,7 @@ const WatchlistTable = () => {
 
   useEffect(() => {
     setTableData(() => {
-      const res = watchlist.map((el: MovieListItem) => {
+      const res = Object.values(watchlist).map((el: MovieListItem) => {
         // IF the rating map is empty, or doesn't contain a rating for the movie
         return ratingMap === undefined || ratingMap[el.id] === undefined
           ? // return the rating as null

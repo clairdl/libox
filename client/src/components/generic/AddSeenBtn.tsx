@@ -7,7 +7,7 @@ import { Button } from 'grommet';
 import { Add } from 'grommet-icons';
 
 // redux
-import { getMovieDetails } from '../../slices/list/listSlice';
+import { addMovieToWatchlist } from '../../slices/list/listSlice';
 
 type AddSeenBtnProps = {
   id: number;
@@ -17,7 +17,7 @@ const AddSeenBtn = (props: AddSeenBtnProps) => {
   const dispatch = useDispatch();
 
   const onClickHandler = () => {
-    dispatch(getMovieDetails({ listId: 'watchedlist', id: props.id }));
+    dispatch(addMovieToWatchlist({ listId: 'watchedlist', id: props.id }));
   };
   return (
     <Button
