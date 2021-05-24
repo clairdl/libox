@@ -27,7 +27,7 @@ export const addMovieToWatchlist = createAsyncThunk(
 
     const movieId: MovieIdNum = res.data.id
 
-    // Return the movie and intended list
+    // Return the movie and intended listId
     return {
       listId: payload.listId,
       movieId,
