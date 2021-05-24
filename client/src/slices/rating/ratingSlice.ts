@@ -3,7 +3,9 @@ import { RootState } from '../../store';
 import { InitialState, CreateOrUpdateRatingPayload } from './ratingTypes';
 import { MovieIdNum, MovieRating } from '../sharedTypes';
 
-const initialState = {} as InitialState
+const initialState: InitialState = {
+  idToRatingMap: {}
+}
 
 export const ratingSlice = createSlice({
   name: 'rating',
