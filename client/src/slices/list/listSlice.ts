@@ -2,7 +2,8 @@
 import { createSlice, createAsyncThunk, PayloadAction, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from '../../store';
-import { InitialState, AddMoviePayload, GetMovieDetailsParams, MovieListItem } from './types';
+import { MovieIdNum } from '../sharedTypes';
+import { InitialState, AddMoviePayload, GetMovieDetailsParams, MovieListItem } from './listTypes';
 
 // Thunks
 export const addMovieToWatchlist = createAsyncThunk(
@@ -15,7 +16,7 @@ export const addMovieToWatchlist = createAsyncThunk(
     // console.log('from asyncthunk: ', data);
 
     // Refine from raw response data
-    const refined: MovieListItem = {
+    const movieListItem: MovieListItem = {
       id: res.data.id,
       posterPath: res.data.poster_path,
       title: res.data.title,
@@ -25,17 +26,20 @@ export const addMovieToWatchlist = createAsyncThunk(
       rating: null
     }
 
+    const movieId: MovieIdNum = res.data.id
+
     // Return the movie and intended list
     return {
       listId: payload.listId,
-      movie: refined
+      movieId,
+      movieListItem
     };
   }
 );
 
 const initialState: InitialState = {
-  watchlist: [],
-  watchedlist: [],
+  watchlist: {},
+  watchedlist: {},
   status: 'idle'
 }
 
@@ -46,8 +50,8 @@ export const listSlice = createSlice({
   reducers: {
     removeFromWatchlist: (state, action: PayloadAction<number>) => {
       console.log('hello?  ', current(state.watchlist), action.payload);
-      
-      state.watchlist.splice(action.payload, 1);
+
+      delete state.watchlist[action.payload]
     },
   },
   extraReducers: (builder) => {
@@ -57,9 +61,9 @@ export const listSlice = createSlice({
       })
       .addCase(addMovieToWatchlist.fulfilled, (state, action: PayloadAction<AddMoviePayload>) => {
         state.status = 'idle';
-        const { listId, movie } = action.payload;
+        const { listId, movieId, movieListItem } = action.payload;
 
-        state[listId].push(movie)
+        state[listId][movieId] = movieListItem;
       })
   }
 });
@@ -71,16 +75,13 @@ export const { removeFromWatchlist } = listSlice.actions;
 export default listSlice.reducer;
 
 // Selectors
-export const selectWatchlist = (state: RootState): MovieListItem[] => state.list.watchlist;
-export const selectWatchedlist = (state: RootState): MovieListItem[] => state.list.watchedlist;
+export const selectWatchlist = (state: RootState) => state.list.watchlist;
+export const selectWatchedlist = (state: RootState) => state.list.watchedlist;
 
-export const selectMovieFromWatchlist = (state: RootState, targetId: number): boolean => {
-  let hasTarget = false;
-  for (let i = 0; i < state.list.watchlist.length; i++) {
-    if (state.list.watchlist[i].id === targetId) {
-      hasTarget = true;
-    }
-    break;
-  }
-  return hasTarget;
+export const selectMovieFromWatchlistById = (state: RootState, movieId: number) => {
+  return state.list.watchlist[movieId];
+}
+
+export const selectIsMovieInWatchlist = (state: RootState, movieId: number): boolean => {
+  return state.list.watchlist[movieId] === undefined ? false : true
 }
