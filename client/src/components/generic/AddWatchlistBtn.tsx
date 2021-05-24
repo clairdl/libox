@@ -12,8 +12,10 @@ import {
   ButtonType,
   ButtonProps,
   ThemeContext,
+  grommet,
 } from 'grommet';
-import { Add, Trash } from 'grommet-icons';
+import { Add, Checkmark, Subtract, Trash } from 'grommet-icons';
+import { deepMerge } from 'grommet/utils';
 
 // redux
 import {
@@ -27,24 +29,33 @@ type AddWatchlistBtnProps = {
   id: number;
 };
 
-const addTheme: ThemeType = {
-  button: {
-    color: 'accent-1',
+const removeTheme: ThemeType = deepMerge(grommet, {
+  global: {
+    colors: {
+      active: 'status-error',
+    },
   },
-};
-
-const removeTheme: ThemeType = {
   button: {
-    color: 'accent-2',
+    default: {},
+    secondary: {
+      background: { color: 'status-ok' },
+      border: { color: 'brand', width: '2px' },
+      color: 'text',
+    },
+    hover: {
+      background: { color: 'active' },
+      secondary: {
+        border: { color: 'active' },
+      },
+    },
   },
-};
+});
 
-export const AddWatchlistBtn = ({ id }: AddWatchlistBtnProps) => {
+const AddWatchlistBtn = ({ id }: AddWatchlistBtnProps) => {
   // init
   const dispatch = useAppDispatch();
-  // const watchlistHasMovie = useAppSelector((state) => {
-  //   return selectIsMovieInWatchlist(state, id);
-  // });
+
+  const [isHover, setIsHover] = useState(false);
 
   const [watchlistHasMovie, setWatchlistHasMovie] = useState(
     useAppSelector((state) => {
@@ -61,28 +72,32 @@ export const AddWatchlistBtn = ({ id }: AddWatchlistBtnProps) => {
     dispatch(removeFromWatchlist(id));
     setWatchlistHasMovie(!watchlistHasMovie);
   };
-  console.log(watchlistHasMovie);
 
   return (
     <>
       {watchlistHasMovie ? (
         <ThemeContext.Extend value={removeTheme}>
           <Button
-            icon={<Trash />}
+            secondary
+            icon={isHover ? <Trash /> : <Checkmark />}
             size='small'
             label='watchlist'
             onClick={handleRemoveFromWatchlist}
+            onMouseEnter={() => {
+              setIsHover(true);
+            }}
+            onMouseLeave={() => {
+              setIsHover(false);
+            }}
           />
         </ThemeContext.Extend>
       ) : (
-        <ThemeContext.Extend value={addTheme}>
-          <Button
-            icon={<Add />}
-            size='small'
-            label='watchlist'
-            onClick={handleAddToWatchlist}
-          />
-        </ThemeContext.Extend>
+        <Button
+          icon={<Add />}
+          size='small'
+          label='watchlist'
+          onClick={handleAddToWatchlist}
+        />
       )}
     </>
   );
