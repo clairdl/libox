@@ -1,33 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
 // core libs
 import React, { useState } from 'react';
 
 // components
 import {
   Button,
-  Box,
-  Text,
   ThemeType,
-  ButtonType,
-  ButtonProps,
   ThemeContext,
   grommet,
 } from 'grommet';
-import { Add, Checkmark, Subtract, Trash } from 'grommet-icons';
+import { Add, Checkmark, Trash } from 'grommet-icons';
 import { deepMerge } from 'grommet/utils';
 
 // redux
 import {
-  addMovieToWatchlist,
+  addMovieToSpecifiedList,
   selectIsMovieInWatchlist,
-  removeFromWatchlist,
+  removeFromSpecifiedList,
 } from '../../slices/list/listSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-
-type AddWatchlistBtnProps = {
-  id: number;
-};
 
 const removeTheme: ThemeType = deepMerge(grommet, {
   global: {
@@ -51,38 +41,49 @@ const removeTheme: ThemeType = deepMerge(grommet, {
   },
 });
 
-const AddWatchlistBtn = ({ id }: AddWatchlistBtnProps) => {
+interface ListButtonProps {
+  listId: string;
+  movieId: number;
+}
+
+const ListButton = ({ listId, movieId }: ListButtonProps) => {
   // init
   const dispatch = useAppDispatch();
 
+  // for button styling
   const [isHover, setIsHover] = useState(false);
 
-  const [watchlistHasMovie, setWatchlistHasMovie] = useState(
+  // if watchlistHasMovie is TRUE:
+  // the `remove` button will render
+  // else, the `add` button will render
+  const [listHasMovie, setWatchlistHasMovie] = useState(
     useAppSelector((state) => {
-      return selectIsMovieInWatchlist(state, id);
+      return selectIsMovieInWatchlist(state, movieId);
     })
   );
 
   const handleAddToWatchlist = () => {
-    dispatch(addMovieToWatchlist({ listId: 'watchlist', id: id }));
-    setWatchlistHasMovie(!watchlistHasMovie);
+    dispatch(addMovieToSpecifiedList({ listId, movieId }));
+    setWatchlistHasMovie(!listHasMovie);
   };
 
-  const handleRemoveFromWatchlist = () => {
-    dispatch(removeFromWatchlist(id));
-    setWatchlistHasMovie(!watchlistHasMovie);
+  const handleRemoveFromList = () => {
+    dispatch(removeFromSpecifiedList({ listId, movieId }));
+    setWatchlistHasMovie(!listHasMovie);
   };
 
   return (
     <>
-      {watchlistHasMovie ? (
+      {listHasMovie ? (
         <ThemeContext.Extend value={removeTheme}>
+          {/* REMOVE BUTTON */}
           <Button
             secondary
             icon={isHover ? <Trash /> : <Checkmark />}
             size='small'
-            label='watchlist'
-            onClick={handleRemoveFromWatchlist}
+            //
+            label={`${listId}`}
+            onClick={handleRemoveFromList}
             onMouseEnter={() => {
               setIsHover(true);
             }}
@@ -92,10 +93,12 @@ const AddWatchlistBtn = ({ id }: AddWatchlistBtnProps) => {
           />
         </ThemeContext.Extend>
       ) : (
+        // ADD BUTTON
         <Button
           icon={<Add />}
           size='small'
-          label='watchlist'
+          //
+          label={`${listId}`}
           onClick={handleAddToWatchlist}
         />
       )}
@@ -103,4 +106,4 @@ const AddWatchlistBtn = ({ id }: AddWatchlistBtnProps) => {
   );
 };
 
-export default AddWatchlistBtn;
+export default ListButton;
