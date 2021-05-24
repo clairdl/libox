@@ -10,19 +10,28 @@ export interface MovieListItem {
   rating: number | null
 }
 
+// state.list.userLists.watchlist
 export interface InitialState {
   status: 'idle' | 'pending' | 'fulfilled' | 'rejected'
-  watchlist: {[key: string]: MovieListItem}
-  watchedlist: {[key: string]: MovieListItem}
+  userLists: {
+    watchlist: { [key: string]: MovieListItem }
+    watchedlist: { [key: string]: MovieListItem }
+    [key: string]: { [key: string]: MovieListItem }
+  }
 }
 
 export interface GetMovieDetailsParams {
-  listId: 'watchlist' | 'watchedlist'
-  id: number
+  listId: string
+  movieId: number
 }
 
 export interface AddMoviePayload {
-  listId: 'watchlist' | 'watchedlist'
+  listId: string
   movieId: number
   movieListItem: MovieListItem
+}
+
+export interface RemoveMoviePayload {
+  listId: string
+  movieId: number
 }

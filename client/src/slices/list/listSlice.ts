@@ -1,17 +1,16 @@
-/* eslint-disable no-unused-vars */
-import { createSlice, createAsyncThunk, PayloadAction, current } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from '../../store';
 import { MovieIdNum } from '../sharedTypes';
-import { InitialState, AddMoviePayload, GetMovieDetailsParams, MovieListItem } from './listTypes';
+import { InitialState, AddMoviePayload, GetMovieDetailsParams, MovieListItem, RemoveMoviePayload } from './listTypes';
 
 // Thunks
-export const addMovieToWatchlist = createAsyncThunk(
-  'list/addMovieToWatchlist',
+export const addMovieToSpecifiedList = createAsyncThunk(
+  'list/addMovieToSpecifiedList',
   async (payload: GetMovieDetailsParams) => {
 
     const res = await axios.get(
-      `/movie/${payload.id}`
+      `/movie/${payload.movieId}`
     );
 
     // Refine from raw response data
@@ -37,9 +36,11 @@ export const addMovieToWatchlist = createAsyncThunk(
 );
 
 const initialState: InitialState = {
-  watchlist: {},
-  watchedlist: {},
-  status: 'idle'
+  status: 'idle',
+  userLists: {
+    watchlist: {},
+    watchedlist: {},
+  }
 }
 
 // Create slice
@@ -47,38 +48,38 @@ export const listSlice = createSlice({
   name: 'list',
   initialState,
   reducers: {
-    removeFromWatchlist: (state, action: PayloadAction<number>) => {
-      delete state.watchlist[action.payload]
+    removeFromSpecifiedList: (state, action: PayloadAction<RemoveMoviePayload>) => {
+      delete state.userLists[action.payload.listId][action.payload.movieId]
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addMovieToWatchlist.pending, (state) => {
+      .addCase(addMovieToSpecifiedList.pending, (state) => {
         state.status = 'pending';
       })
-      .addCase(addMovieToWatchlist.fulfilled, (state, action: PayloadAction<AddMoviePayload>) => {
+      .addCase(addMovieToSpecifiedList.fulfilled, (state, action: PayloadAction<AddMoviePayload>) => {
         state.status = 'idle';
         const { listId, movieId, movieListItem } = action.payload;
 
-        state[listId][movieId] = movieListItem;
+        state.userLists[listId][movieId] = movieListItem;
       })
   }
 });
 
 // Actions
-export const { removeFromWatchlist } = listSlice.actions;
+export const { removeFromSpecifiedList } = listSlice.actions;
 
 // Reducers
 export default listSlice.reducer;
 
 // Selectors
-export const selectWatchlist = (state: RootState) => state.list.watchlist;
-export const selectWatchedlist = (state: RootState) => state.list.watchedlist;
+export const selectWatchlist = (state: RootState) => state.list.userLists.watchlist;
+export const selectWatchedlist = (state: RootState) => state.list.userLists.watchedlist;
 
 export const selectMovieFromWatchlistById = (state: RootState, movieId: number) => {
-  return state.list.watchlist[movieId];
+  return state.list.userLists.watchlist[movieId];
 }
 
 export const selectIsMovieInWatchlist = (state: RootState, movieId: number): boolean => {
-  return state.list.watchlist[movieId] === undefined ? false : true
+  return state.list.userLists.watchlist[movieId] === undefined ? false : true
 }
