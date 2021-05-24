@@ -1,5 +1,5 @@
-import React from 'react';
 import { Text } from 'grommet';
+
 interface Props {
   label: string;
 }

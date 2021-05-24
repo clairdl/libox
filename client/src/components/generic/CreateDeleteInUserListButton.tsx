@@ -1,5 +1,5 @@
 // core libs
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // components
 import {
@@ -19,7 +19,7 @@ import {
 } from '../../slices/list/listSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
-const removeTheme: ThemeType = deepMerge(grommet, {
+const removeButtonTheme: ThemeType = deepMerge(grommet, {
   global: {
     colors: {
       active: 'status-error',
@@ -41,12 +41,12 @@ const removeTheme: ThemeType = deepMerge(grommet, {
   },
 });
 
-interface ListButtonProps {
+interface Props {
   listId: string;
   movieId: number;
 }
 
-const ListButton = ({ listId, movieId }: ListButtonProps) => {
+const ListButton = ({ listId, movieId }: Props) => {
   // init
   const dispatch = useAppDispatch();
 
@@ -75,7 +75,7 @@ const ListButton = ({ listId, movieId }: ListButtonProps) => {
   return (
     <>
       {listHasMovie ? (
-        <ThemeContext.Extend value={removeTheme}>
+        <ThemeContext.Extend value={removeButtonTheme}>
           {/* REMOVE BUTTON */}
           <Button
             secondary

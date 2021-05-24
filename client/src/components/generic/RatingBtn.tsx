@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FormDown } from 'grommet-icons';
 
 import { Box, List, DropButton, Text } from 'grommet';
@@ -8,14 +8,14 @@ import {
   deleteRating,
 } from '../../slices/rating/ratingSlice';
 
-type RatingBtnProps = {
+interface Props {
   id: number;
   rating: number | null | undefined;
 };
 
 const options = ['remove', 1, 2, 3, 4, 5];
 
-const RatingBtn = ({ id, rating }: RatingBtnProps) => {
+const RatingBtn = ({ id, rating }: Props) => {
   const dispatch = useAppDispatch();
 
   const [open, setOpen] = useState(false);

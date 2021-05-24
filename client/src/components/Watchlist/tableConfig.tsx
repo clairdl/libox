@@ -44,7 +44,7 @@ export const columns = [
   {
     property: 'revenue',
     header: <ColumnHeader label='Revenue' />,
-    render: (datum: MovieListItem) => `${datum.runtime} bucks`,
+    render: (datum: MovieListItem) => `${datum.revenue} bucks`,
   },
   {
     property: 'user_rating',

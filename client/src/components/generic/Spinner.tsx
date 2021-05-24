@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Box, Spinner, Text } from 'grommet';
 
 const Simple = () => (
