@@ -13,8 +13,7 @@ import {
   Grid,
 } from 'grommet';
 
-import AddWatchlistBtn from '../generic/AddWatchlistBtn';
-import AddSeenBtn from '../generic/AddSeenBtn';
+import CreateDeleteInUserListButton from '../generic/CreateDeleteInUserListButton';
 
 const SearchListItem = (props) => {
   const { id, title, desc, poster, date } = props;
@@ -22,7 +21,7 @@ const SearchListItem = (props) => {
     // TODO: split this component up into smaller, more reusable components
     <Card
       border={{
-        color: 'brand',
+        color: 'light-3',
         size: 'xsmall',
         style: 'solid',
         side: 'all',
@@ -33,7 +32,7 @@ const SearchListItem = (props) => {
       margin={{ vertical: 'xsmall' }}
     >
       <CardBody
-        width={{ min: '209px', max: '209px' }}
+        width={{ min: '140px', max: '140px'}}
         pad={{ right: 'medium' }}
       >
         <Image
@@ -68,8 +67,8 @@ const SearchListItem = (props) => {
             justify='start'
             pad={{ vertical: 'small' }}
           >
-            <AddWatchlistBtn id={id} />
-            <AddSeenBtn id={id} />
+            <CreateDeleteInUserListButton listId='watchlist' movieId={id} />
+            <CreateDeleteInUserListButton listId='watchedlist' movieId={id} />
           </CardFooter>
         </Box>
       </Box>
