@@ -13,7 +13,6 @@ export const addMovieToWatchlist = createAsyncThunk(
     const res = await axios.get(
       `/movie/${payload.id}`
     );
-    // console.log('from asyncthunk: ', data);
 
     // Refine from raw response data
     const movieListItem: MovieListItem = {
@@ -49,8 +48,6 @@ export const listSlice = createSlice({
   initialState,
   reducers: {
     removeFromWatchlist: (state, action: PayloadAction<number>) => {
-      console.log('hello?  ', current(state.watchlist), action.payload);
-
       delete state.watchlist[action.payload]
     },
   },

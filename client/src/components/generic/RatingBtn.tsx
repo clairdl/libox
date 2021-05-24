@@ -22,7 +22,6 @@ const RatingBtn = ({ id, rating }: RatingBtnProps) => {
   const [open, setOpen] = useState(false);
 
   const onClickHandler = (e: any) => {
-    console.log(e.datum);
     e.item === 'remove'
       ? dispatch(deleteRating(id))
       : dispatch(createOrUpdateRating({ id, rating: e.item }));
