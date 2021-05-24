@@ -18,7 +18,7 @@ import { Add, Trash } from 'grommet-icons';
 // redux
 import {
   addMovieToWatchlist,
-  selectMovieFromWatchlist,
+  selectIsMovieInWatchlist,
   removeFromWatchlist,
 } from '../../slices/list/listSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -43,23 +43,23 @@ export const AddWatchlistBtn = ({ id }: AddWatchlistBtnProps) => {
   // init
   const dispatch = useAppDispatch();
   // const watchlistHasMovie = useAppSelector((state) => {
-  //   return selectMovieFromWatchlist(state, id);
+  //   return selectIsMovieInWatchlist(state, id);
   // });
 
   const [watchlistHasMovie, setWatchlistHasMovie] = useState(
     useAppSelector((state) => {
-      return selectMovieFromWatchlist(state, id);
+      return selectIsMovieInWatchlist(state, id);
     })
   );
 
   const handleAddToWatchlist = () => {
     dispatch(addMovieToWatchlist({ listId: 'watchlist', id: id }));
-    setWatchlistHasMovie(!watchlistHasMovie)
+    setWatchlistHasMovie(!watchlistHasMovie);
   };
 
   const handleRemoveFromWatchlist = () => {
     dispatch(removeFromWatchlist(id));
-    setWatchlistHasMovie(!watchlistHasMovie)
+    setWatchlistHasMovie(!watchlistHasMovie);
   };
   console.log(watchlistHasMovie);
 
