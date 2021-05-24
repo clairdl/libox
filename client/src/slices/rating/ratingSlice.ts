@@ -1,12 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
-import { InitialState, CreateOrUpdateRatingPayload, MovieId, MovieRating } from './types';
+import { InitialState, CreateOrUpdateRatingPayload } from './ratingTypes';
+import { MovieIdNum, MovieRating } from '../sharedTypes';
 
-const initialState: InitialState = {
-  idToRatingMap: {
-    65976: 0
-  }
-}
+const initialState = {} as InitialState
 
 export const ratingSlice = createSlice({
   name: 'rating',
@@ -26,7 +23,7 @@ export const ratingSlice = createSlice({
       //   // Object.assign(state.idToRatingMap, { [id]: rating })
       // }
     },
-    deleteRating: (state, action: PayloadAction<MovieId>): void => {
+    deleteRating: (state, action: PayloadAction<MovieIdNum>): void => {
       delete state.idToRatingMap[action.payload];
     }
   }
@@ -40,7 +37,7 @@ export const { deleteRating } = ratingSlice.actions;
 export default ratingSlice.reducer;
 
 // Selectors
-export const selectEntireRatingMap = (state: RootState): Record<MovieId, MovieRating> | undefined => state.rating.idToRatingMap
+export const selectEntireRatingMap = (state: RootState): Record<MovieIdNum, MovieRating> | undefined => state.rating.idToRatingMap
 
 
 export const selectRatingById = (state: RootState, id: number): number | null => {
