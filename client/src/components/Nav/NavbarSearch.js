@@ -14,6 +14,10 @@ import {
   searchMovies,
 } from '../../slices/search/searchSlice';
 
+// i know you shouldn't actually store this component's state in redux,
+// as it is completely local to this component, but i wanted to test out
+// the redux toolkit lib.
+
 const NavbarSearch = () => {
   // useDispatch returns a reference to the dispatch function from the Redux store
   const dispatch = useDispatch();

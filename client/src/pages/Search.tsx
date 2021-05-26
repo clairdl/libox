@@ -18,7 +18,7 @@ const Search = () => {
   return (
     <div>{
       status === 'pending'
-        ? <Spinner />
+        ? <Spinner size='medium' label='Scanning the Jedi Archives...' />
         : noResults
         ? <NoResults />
         : <SearchList />

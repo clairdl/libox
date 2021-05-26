@@ -10,7 +10,7 @@ import {
 
 interface Props {
   id: number;
-  rating: number | null | undefined;
+  rating?: number | null | undefined;
 };
 
 const options = ['remove', 1, 2, 3, 4, 5];

@@ -13,7 +13,7 @@ import {
   Grid,
 } from 'grommet';
 
-import CreateDeleteInUserListButton from '../generic/CreateDeleteInUserListButton';
+import AddToListButton from '../generic/AddToListButton';
 
 const SearchListItem = (props) => {
   const { id, title, desc, poster, date } = props;
@@ -67,8 +67,8 @@ const SearchListItem = (props) => {
             justify='start'
             pad={{ vertical: 'small' }}
           >
-            <CreateDeleteInUserListButton listId='watchlist' movieId={id} />
-            <CreateDeleteInUserListButton listId='watchedlist' movieId={id} />
+            <AddToListButton listId='watchlist' movieId={id} />
+            <AddToListButton listId='watchedlist' movieId={id} />
           </CardFooter>
         </Box>
       </Box>
