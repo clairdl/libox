@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 
 import { Box, DataTable } from 'grommet';
@@ -18,32 +20,9 @@ import { MovieListItem } from '../../slices/list/listTypes';
 // );
 
 const WatchlistTable = () => {
-  // Select user's watchlist and ratings from Redux
-  const watchlist = useAppSelector(selectWatchlist);
-  const ratingMap = useAppSelector(selectEntireRatingMap);
-
-  // Initialize typesafe tableData state
-  const [tableData, setTableData] = useState<MovieListItem[]>();
-
-  // const [sort, setSort] = useState({
-  //   property: 'name',
-  //   direction: 'desc',
-  // });
-
-  useEffect(() => {
-    setTableData(() => {
-      const res = Object.values(watchlist).map((el: MovieListItem) => {
-        // IF the rating map is empty, or doesn't contain a rating for the movie
-        return ratingMap === undefined || ratingMap[el.id] === undefined
-          ? // return the rating as null
-            { ...el, rating: null }
-          : // else, return the movie's rating
-            { ...el, rating: ratingMap[el.id] };
-      });
-
-      return res.reverse();
-    });
-  }, [watchlist, ratingMap]);
+  const [tableData, setTableData] = useState<MovieListItem[]>(
+    Object.values(useAppSelector(selectWatchlist))
+  );
 
   const onClickHandle = (e: any) => {
     // console.log(e);
@@ -56,7 +35,6 @@ const WatchlistTable = () => {
         columns={columns}
         data={tableData}
         step={10}
-        // sort={sort}
         onClickRow={onClickHandle}
       />
     </Box>

@@ -2,32 +2,43 @@ import { useState } from 'react';
 import { FormDown } from 'grommet-icons';
 
 import { Box, List, DropButton, Text } from 'grommet';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   createOrUpdateRating,
   deleteRating,
+  selectRatingById,
 } from '../../slices/rating/ratingSlice';
 
 interface Props {
   id: number;
-  rating?: number | null | undefined;
-};
+}
 
 const options = ['remove', 1, 2, 3, 4, 5];
 
-const RatingBtn = ({ id, rating }: Props) => {
+const RatingBtn = ({ id }: Props) => {
   const dispatch = useAppDispatch();
+
+  const [rating, setRating] = useState(
+    useAppSelector((state) => {
+      return selectRatingById(state, id);
+    })
+  );
 
   const [open, setOpen] = useState(false);
 
   const onClickHandler = (e: any) => {
-    e.item === 'remove'
-      ? dispatch(deleteRating(id))
-      : dispatch(createOrUpdateRating({ id, rating: e.item }));
+    if (e.item === 'remove') {
+      dispatch(deleteRating(id));
+      setRating(null);
+    } else {
+      dispatch(createOrUpdateRating({ id, rating: e.item }));
+      setRating(e.item);
+    }
 
     setOpen(false);
   };
 
+  console.log(id, rating);
   return (
     <Box>
       <DropButton

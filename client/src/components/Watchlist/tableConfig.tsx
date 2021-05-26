@@ -1,26 +1,24 @@
-import * as React from 'react';
-
+import { Text } from 'grommet';
 import { MovieListItem } from '../../slices/list/listTypes';
 
 import TablePoster from './TablePoster';
 import RatingBtn from '../generic/RatingBtn';
-import ColumnHeader from './ColumnHeader';
 
 export const columns = [
   {
     property: 'poster',
-    header: <ColumnHeader label='Poster' />,
+    header: <Text weight='bold'>Poster</Text>,
     render: (datum: MovieListItem) => (
       <TablePoster size='w342' path={datum.posterPath} />
     ),
   },
   {
     property: 'title',
-    header: <ColumnHeader label='Title' />,
+    header: <Text weight='bold'>Title</Text>,
   },
   {
     property: 'release_date',
-    header: <ColumnHeader label='Release Date' />,
+    header: <Text weight='bold'>Release Date</Text>,
     render: (datum: MovieListItem) =>
       datum.releaseDate &&
       `${new Date(datum.releaseDate).toLocaleDateString('en-US', {
@@ -31,7 +29,7 @@ export const columns = [
   },
   {
     property: 'runtime',
-    header: <ColumnHeader label='Runtime' />,
+    header: <Text weight='bold'>Runtime</Text>,
     render: ({ runtime }: MovieListItem) => {
       return runtime === null
         ? '-'
@@ -43,14 +41,12 @@ export const columns = [
   },
   {
     property: 'revenue',
-    header: <ColumnHeader label='Revenue' />,
+    header: <Text weight='bold'>Revenue</Text>,
     render: (datum: MovieListItem) => `${datum.revenue} bucks`,
   },
   {
     property: 'user_rating',
-    header: <ColumnHeader label='Rating' />,
-    render: (datum: MovieListItem) => (
-      <RatingBtn id={datum.id} rating={datum.rating} />
-    ),
+    header: <Text weight='bold'>Rating</Text>,
+    render: (datum: MovieListItem) => <RatingBtn id={datum.id} />,
   },
 ];
