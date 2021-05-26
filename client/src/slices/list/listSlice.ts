@@ -80,6 +80,6 @@ export const selectMovieFromWatchlistById = (state: RootState, movieId: number) 
   return state.list.userLists.watchlist[movieId];
 }
 
-export const selectIsMovieInWatchlist = (state: RootState, movieId: number): boolean => {
-  return state.list.userLists.watchlist[movieId] === undefined ? false : true
+export const selectIsMovieInWatchlist = (state: RootState, listId: string, movieId: number): boolean => {
+  return state.list.userLists[listId][movieId] === undefined ? false : true
 }
