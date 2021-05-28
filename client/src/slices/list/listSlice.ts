@@ -73,8 +73,8 @@ export const { removeFromSpecifiedList } = listSlice.actions;
 export default listSlice.reducer;
 
 // Selectors
-export const selectWatchlist = (state: RootState) => state.list.userLists.watchlist;
-export const selectWatchedlist = (state: RootState) => state.list.userLists.watchedlist;
+export const selectWatchlist = (state: RootState): { [key: string]: MovieListItem } => state.list.userLists.watchlist;
+export const selectWatchedlist = (state: RootState): { [key: string]: MovieListItem } => state.list.userLists.watchedlist;
 
 export const selectMovieFromWatchlistById = (state: RootState, movieId: number) => {
   return state.list.userLists.watchlist[movieId];

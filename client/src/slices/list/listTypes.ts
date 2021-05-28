@@ -7,8 +7,8 @@ export interface MovieListItem {
   releaseDate: string
   runtime: number | null
   revenue: number
-  rating: number | null
-}
+  rating?: number | null
+} 
 
 // state.list.userLists.watchlist
 export interface InitialState {
