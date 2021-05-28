@@ -1,19 +1,9 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import {
-  Text,
   Box,
-  Card,
-  CardBody,
-  Carousel,
-  Heading,
-  Paragraph,
-  Image,
   Tabs,
   List,
   Tab,
 } from 'grommet';
-import { string } from 'prop-types';
 import React from 'react';
 import { Cast, Crew } from './types';
 
@@ -25,12 +15,6 @@ interface Props {
 
 const CastCrewDetailsTabs = (props: Props) => {
   const [index, setIndex] = React.useState(0);
-
-  // const details = Object.values(props.details).map((el) => {
-  //   console.log('123', el);
-
-  //   // return { detail: el. }
-  // });
 
   const cast = props.cast.map((el) => {
     return { name: el.name, character: el.character };

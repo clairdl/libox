@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import { Box, Stack, Text, Meter, Heading } from 'grommet';
+import { Box, Stack, Text, Meter } from 'grommet';
 import React from 'react';
 
 interface Props {

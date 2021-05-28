@@ -1,31 +1,22 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, useEffect, useLayoutEffect } from 'react';
+// core libs
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Box,
-  Button,
-  Grid,
-  Heading,
-  Image,
-  Meter,
-  Stack,
-  Text,
-  Tabs,
-  Tab,
-} from 'grommet';
-import AddToListButton from '../../components/generic/AddToListButton';
-import Spinner from '../../components/generic/Spinner';
-import { MovieDetailsData, MovieCreditsData, Crew } from './types';
-import HeaderButtons from './NavButtons';
-
-import { LinkPrevious } from 'grommet-icons';
 import FastAverageColor from 'fast-average-color';
+
+// components
 import BackdropImage from './BackdropImage';
 import TitleText from './TitleText';
 import RatingBtn from '../../components/generic/RatingBtn';
 import RatingPanel from './RatingPanel';
 import CastCrewDetailsTabs from './CastCrewDetailsTabs';
+import AddToListButton from '../../components/generic/AddToListButton';
+import Spinner from '../../components/generic/Spinner';
+import { Box, Button, Image, Text } from 'grommet';
+import { LinkPrevious } from 'grommet-icons';
+
+// typescript
+import { MovieDetailsData, MovieCreditsData } from './types';
+
 
 interface Props {
   id: number;

@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import { Grid, Heading, Text, Box } from 'grommet';
+import { Heading, Text, Box } from 'grommet';
 
 interface Props {
   title: string;
