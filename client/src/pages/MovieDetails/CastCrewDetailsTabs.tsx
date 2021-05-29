@@ -26,10 +26,8 @@ const CastCrewDetailsTabs = (props: Props) => {
 
   const onActive = (nextIndex: number) => setIndex(nextIndex);
 
-  console.log(props.details, crew);
-
   return (
-    <Tabs margin={{ top: 'small' }} activeIndex={index} onActive={onActive}>
+    <Tabs margin={{ top: 'large' }} activeIndex={index} onActive={onActive}>
       <Tab title='Cast'>
         <Box align='center'>
           <List

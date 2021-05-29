@@ -38,23 +38,20 @@ const RatingBtn = ({ id }: Props) => {
     setOpen(false);
   };
 
-  console.log(id, rating);
   return (
-    <Box>
-      <DropButton
-        open={open}
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
-        dropContent={
-          <List data={options} border={false} onClickItem={onClickHandler} />
-        }
-      >
-        <Box direction='row' gap='medium' align='center' pad='small'>
-          <Text>{rating === null ? '-' : `${rating}/5`}</Text>
-          <FormDown color='brand' />
-        </Box>
-      </DropButton>
-    </Box>
+    <DropButton
+      open={open}
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      dropContent={
+        <List data={options} border={false} onClickItem={onClickHandler} />
+      }
+    >
+      <Box direction='row' gap='medium' align='center' pad='small'>
+        <Text>{rating === null ? '-' : `${rating}/5`}</Text>
+        <FormDown color='brand' />
+      </Box>
+    </DropButton>
   );
 };
 

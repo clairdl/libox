@@ -17,7 +17,6 @@ import { LinkPrevious } from 'grommet-icons';
 // typescript
 import { MovieDetailsData, MovieCreditsData } from './types';
 
-
 interface Props {
   id: number;
 }
@@ -75,35 +74,37 @@ const MovieDetails = (props: Props) => {
         <Spinner size='large' />
       ) : (
         <Box
-          pad={{ horizontal: '100px' }}
-          background={{ color: 'accent-4' }}
+          pad={{ horizontal: '40px' }}
+          background={{ color: col }}
           direction='row'
           justify='between'
         >
           <Box
+            width={{ max: '250px' }}
             style={{ position: 'sticky', top: 0 }}
-            height='medium'
-            width='medium'
             direction='column'
-            background={{ color: 'accent-2' }}
-            margin={{ right: 'small' }}
           >
             <Button secondary alignSelf='start' icon={<LinkPrevious />} />
+
             <Image
               src={`https://www.themoviedb.org/t/p/original/${mvD.poster_path}`}
             />
-            <RatingPanel
-              voteCount={mvD.vote_count}
-              voteScore={mvD.vote_average}
-            />
+
+            <Box pad={{ top: 'small' }} gap='small' alignSelf='start'>
+              <AddToListButton listId='watchlist' movieId={props.id} />
+              <AddToListButton listId='watchedlist' movieId={props.id} />
+              <RatingBtn id={props.id} />
+              <RatingPanel voteScore={mvD.vote_average} />
+            </Box>
           </Box>
 
           <Box background={col}>
-            <Box width='xlarge'>
-              <BackdropImage backdropPath={mvD.backdrop_path} col={col} />
-            </Box>
+            <BackdropImage backdropPath={mvD.backdrop_path} col={col} />
 
-            <Box margin={{ bottom: '600px' }} pad={{ horizontal: 'large' }}>
+            <Box
+              margin={{ bottom: '100px' }}
+              pad={{ horizontal: 'large' }}
+            >
               <TitleText
                 title={mvD.title}
                 releaseDate={mvD.release_date}
@@ -117,16 +118,7 @@ const MovieDetails = (props: Props) => {
                 {mvD.tagline?.toUpperCase()}
               </Text>
               <Text>{mvD.overview}</Text>
-              <Box
-                alignSelf='start'
-                direction='row'
-                pad={{ top: 'medium' }}
-                gap='small'
-              >
-                <AddToListButton listId='watchlist' movieId={props.id} />
-                <AddToListButton listId='watchedlist' movieId={props.id} />
-                <RatingBtn id={props.id} />
-              </Box>
+
               <CastCrewDetailsTabs
                 cast={mvC.cast}
                 crew={mvC.crew}
