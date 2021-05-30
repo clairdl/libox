@@ -1,9 +1,4 @@
-import {
-  Box,
-  Tabs,
-  List,
-  Tab,
-} from 'grommet';
+import { Box, Tabs, List, Tab } from 'grommet';
 import React from 'react';
 import { Cast, Crew } from './types';
 
@@ -52,7 +47,11 @@ const CastCrewDetailsTabs = (props: Props) => {
       </Tab>
       <Tab title='Details'>
         <Box align='center'>
-          <List primaryKey='name' secondaryKey='val' data={props.details} />
+          <List
+            primaryKey='name'
+            secondaryKey='val'
+            data={props.details}
+          />
         </Box>
       </Tab>
     </Tabs>

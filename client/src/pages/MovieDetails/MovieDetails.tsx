@@ -63,9 +63,21 @@ const MovieDetails = (props: Props) => {
   }, [mvD]);
 
   let details = [
-    { name: 'runtime', val: `${mvD.runtime}mins` },
-    { name: 'revenue', val: `${mvD.revenue} USD` },
-    { name: 'budget', val: `${mvD.budget} USD` },
+    { name: 'Runtime', val: `${mvD.runtime} mins` },
+    {
+      name: 'Revenue',
+      val: `${new Intl.NumberFormat('en-EN', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(mvD.revenue)}`,
+    },
+    {
+      name: 'Budget',
+      val: `${new Intl.NumberFormat('en-EN', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(mvD.budget)}`,
+    },
   ];
 
   return (
@@ -101,10 +113,7 @@ const MovieDetails = (props: Props) => {
           <Box background={col}>
             <BackdropImage backdropPath={mvD.backdrop_path} col={col} />
 
-            <Box
-              margin={{ bottom: '100px' }}
-              pad={{ horizontal: 'large' }}
-            >
+            <Box margin={{ bottom: '100px' }} pad={{ horizontal: 'large' }}>
               <TitleText
                 title={mvD.title}
                 releaseDate={mvD.release_date}

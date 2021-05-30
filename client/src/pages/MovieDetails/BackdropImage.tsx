@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Box, Stack, Image } from 'grommet';
 
 interface Props {
