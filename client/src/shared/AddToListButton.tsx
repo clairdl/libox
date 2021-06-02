@@ -16,8 +16,8 @@ import {
   addMovieToSpecifiedList,
   selectIsMovieInWatchlist,
   removeFromSpecifiedList,
-} from '../../slices/list/listSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+} from '../slices/list/listSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 
 const removeButtonTheme: ThemeType = deepMerge(grommet, {
   global: {

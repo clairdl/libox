@@ -1,4 +1,4 @@
-import { MovieIdNum, MovieRating } from '../sharedTypes';
+import { MovieIdNum, MovieRating } from '../types';
 
 export interface InitialState {
   idToRatingMap: Record<MovieIdNum, MovieRating>

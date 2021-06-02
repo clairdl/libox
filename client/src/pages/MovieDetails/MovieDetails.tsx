@@ -6,11 +6,11 @@ import FastAverageColor from 'fast-average-color';
 // components
 import BackdropImage from './BackdropImage';
 import TitleText from './TitleText';
-import RatingBtn from '../../components/generic/RatingBtn';
+import RatingBtn from '../../shared/RatingBtn';
 import RatingPanel from './RatingPanel';
 import CastCrewDetailsTabs from './CastCrewDetailsTabs';
-import AddToListButton from '../../components/generic/AddToListButton';
-import Spinner from '../../components/generic/Spinner';
+import AddToListButton from '../../shared/AddToListButton';
+import Spinner from '../../shared/Spinner';
 import { Box, Button, Image, Text } from 'grommet';
 import { LinkPrevious } from 'grommet-icons';
 
@@ -127,11 +127,12 @@ const MovieDetails = () => {
               <Text>{mvD.overview}</Text>
 
               <Box alignSelf='start'>
-              <CastCrewDetailsTabs
-                cast={mvC.cast}
-                crew={mvC.crew}
-                details={details}
-              /></Box>
+                <CastCrewDetailsTabs
+                  cast={mvC.cast}
+                  crew={mvC.crew}
+                  details={details}
+                />
+              </Box>
             </Box>
           </Box>
         </Box>

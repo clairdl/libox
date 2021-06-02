@@ -2,7 +2,7 @@ import { Text } from 'grommet';
 import { MovieListItem } from '../../slices/list/listTypes';
 
 import TablePoster from './TablePoster';
-import RatingBtn from '../generic/RatingBtn';
+import RatingBtn from '../../shared/RatingBtn';
 
 export const columns = [
   {

@@ -13,7 +13,14 @@ export const searchMovies = createAsyncThunk(
   }
 );
 
-const initialState = {
+interface InitialState {
+  query: string;
+  status: string;
+  movies: { [key: string]: any }[];
+  totalResults: number | null
+}
+
+const initialState: InitialState = {
   query: '',
   status: 'idle',
   movies: [],

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import placeholderMoviePoster from '../../assets/placeholderMoviePoster.png';
 
@@ -13,10 +12,9 @@ import {
   Grid,
 } from 'grommet';
 
-import AddToListButton from '../generic/AddToListButton';
+import AddToListButton from '../../shared/AddToListButton';
 
-const SearchListItem = (props) => {
-  const { id, title, desc, poster, date } = props;
+const SearchListItem = ({ id, title, desc, poster, date }) => {
   return (
     // TODO: split this component up into smaller, more reusable components
     <Card
@@ -32,7 +30,7 @@ const SearchListItem = (props) => {
       margin={{ vertical: 'xsmall' }}
     >
       <CardBody
-        width={{ min: '140px', max: '140px'}}
+        width={{ min: '140px', max: '140px' }}
         pad={{ right: 'medium' }}
       >
         <Image

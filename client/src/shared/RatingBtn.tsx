@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { FormDown } from 'grommet-icons';
 
 import { Box, List, DropButton, Text } from 'grommet';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import {
   createOrUpdateRating,
   deleteRating,
   selectRatingById,
-} from '../../slices/rating/ratingSlice';
+} from '../slices/rating/ratingSlice';
 
 interface Props {
   id: number;

@@ -1,12 +1,14 @@
 // libs
-import React from 'react';
 import { useSelector } from 'react-redux';
 // redux
-import { selectStatus, selectTotalResults } from '../slices/search/searchSlice';
+import {
+  selectStatus,
+  selectTotalResults,
+} from '../../slices/search/searchSlice';
 // components
-import Spinner from '../components/generic/Spinner';
-import SearchList from '../components/Search/SearchList';
-import NoResults from '../components/generic/NoResults';
+import Spinner from '../../shared/Spinner';
+import SearchList from './SearchList';
+import NoResults from '../../shared/NoResults';
 
 const Search = () => {
   const totalResults = useSelector(selectTotalResults);

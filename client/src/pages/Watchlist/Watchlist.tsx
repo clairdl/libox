@@ -1,11 +1,13 @@
 import React from 'react';
-import WatchlistTable from '../components/Watchlist/WatchlistTable';
+import WatchlistTable from './WatchlistTable';
 
-export default function Watchlist() {
+const Watchlist = () => {
   return (
     <div>
       <h1>Watchlist</h1>
       <WatchlistTable />
     </div>
   );
-}
+};
+
+export default Watchlist;

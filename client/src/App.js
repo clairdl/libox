@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Grommet } from 'grommet';
-import Navbar from './components/Nav/Navbar';
+import Navbar from './shared/Nav/Navbar';
 import Home from './pages/Home';
-import Watchlist from './pages/Watchlist';
-import Search from './pages/Search';
-import MovieDetails from './pages/MovieDetails/index'
+import Watchlist from './pages/Watchlist/index';
+import Search from './pages/Search/index';
+import MovieDetails from './pages/MovieDetails/MovieDetails'
 
 const myTheme = {
   anchor: {
