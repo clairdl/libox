@@ -48,7 +48,7 @@ const RatingBtn = ({ id }: Props) => {
       }
     >
       <Box direction='row' gap='medium' align='center' pad='small'>
-        <Text>{rating === null ? '-' : `${rating}/5`}</Text>
+        <Text>{rating === null ? '-/5' : `${rating}/5`}</Text>
         <FormDown color='brand' />
       </Box>
     </DropButton>

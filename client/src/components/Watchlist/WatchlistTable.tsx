@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Box, DataTable } from 'grommet';
 
@@ -20,12 +21,16 @@ import { MovieListItem } from '../../slices/list/listTypes';
 // );
 
 const WatchlistTable = () => {
+  const history = useHistory();
+
   const [tableData, setTableData] = useState<MovieListItem[]>(
     Object.values(useAppSelector(selectWatchlist))
   );
 
   const onClickHandle = (e: any) => {
-    // console.log(e);
+    // console.log(e.datum.id);
+    
+    history.push(`/movie/${e.datum.id}`)
   };
 
   return (
