@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from '../../store';
-import { MovieIdNum } from '../sharedTypes';
+import { MovieIdNum } from '../types';
 import { InitialState, AddMoviePayload, GetMovieDetailsParams, MovieListItem, RemoveMoviePayload } from './listTypes';
 
 // Thunks

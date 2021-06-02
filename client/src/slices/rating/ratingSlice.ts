@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import { InitialState, CreateOrUpdateRatingPayload } from './ratingTypes';
-import { MovieIdNum, MovieRating } from '../sharedTypes';
+import { MovieIdNum, MovieRating } from '../types';
 
 const initialState: InitialState = {
   idToRatingMap: {}
