@@ -16,12 +16,10 @@ import { LinkPrevious } from 'grommet-icons';
 
 // typescript
 import { MovieDetailsData, MovieCreditsData } from './types';
+import { useParams } from 'react-router-dom';
 
-interface Props {
-  id: number;
-}
-
-const MovieDetails = (props: Props) => {
+const MovieDetails = () => {
+  const { id } = useParams<{ id }>();
   const [isLoading, setIsLoading] = useState(true);
   const [mvD, setMovieDetails] = useState({} as MovieDetailsData);
   const [mvC, setMovieCredits] = useState({} as MovieCreditsData);
@@ -32,8 +30,8 @@ const MovieDetails = (props: Props) => {
   // data fetching & refining
   useEffect(() => {
     const fetchData = async () => {
-      const resDetails = await axios(`/movie/${props.id}`);
-      const resCredits = await axios(`/movie/${props.id}/credits`);
+      const resDetails = await axios(`/movie/${id}`);
+      const resCredits = await axios(`/movie/${id}/credits`);
       setMovieDetails(resDetails.data);
       setMovieCredits(() => {
         setDir(
@@ -103,9 +101,9 @@ const MovieDetails = (props: Props) => {
             />
 
             <Box pad={{ top: 'small' }} gap='small' alignSelf='start'>
-              <AddToListButton listId='watchlist' movieId={props.id} />
-              <AddToListButton listId='watchedlist' movieId={props.id} />
-              <RatingBtn id={props.id} />
+              <AddToListButton listId='watchlist' movieId={id} />
+              <AddToListButton listId='watchedlist' movieId={id} />
+              <RatingBtn id={id} />
               <RatingPanel voteScore={mvD.vote_average} />
             </Box>
           </Box>
@@ -128,11 +126,12 @@ const MovieDetails = (props: Props) => {
               </Text>
               <Text>{mvD.overview}</Text>
 
+              <Box alignSelf='start'>
               <CastCrewDetailsTabs
                 cast={mvC.cast}
                 crew={mvC.crew}
                 details={details}
-              />
+              /></Box>
             </Box>
           </Box>
         </Box>
