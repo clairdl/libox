@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Nav, Anchor, Header } from 'grommet';
+import { Box, Nav, Anchor, Header } from 'grommet';
 
 import NavbarSearch from './NavbarSearch';
 import LoginBtn from '../LoginBtn';
@@ -14,8 +14,10 @@ const Navbar = () => (
       <Anchor as={Link} to='/watchlist' label='watchlist' />
       <NavbarSearch />
 
-      <LoginBtn />
-      <SignupBtn />
+      <Box direction='row' align='center' gap='small'>
+        <LoginBtn />
+        <SignupBtn />
+      </Box>
     </Nav>
   </Header>
 );

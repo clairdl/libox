@@ -25,7 +25,7 @@ const SignupBtn = () => {
   const onClose = () => setOpen(false);
 
   return (
-    <Box fill align='center' justify='center'>
+    <Box fill>
       <Button icon={<UserAdd />} label='Sign up' onClick={onOpen} />
       {open && (
         <Layer
@@ -44,7 +44,7 @@ const SignupBtn = () => {
           >
             <Box flex={false} direction='row' justify='between'>
               <Heading level={2} margin='none'>
-                Login
+                Sign up
               </Heading>
               <Button icon={<Close />} onClick={onClose} />
             </Box>
