@@ -24,8 +24,12 @@ const SignupBtn = () => {
 
   const onClose = () => setOpen(false);
 
+  const onSubmit = () => {
+    onClose();
+  };
+
   return (
-    <Box fill>
+    <Box>
       <Button icon={<UserAdd />} label='Sign up' onClick={onOpen} />
       {open && (
         <Layer
@@ -55,9 +59,12 @@ const SignupBtn = () => {
               <FormField label='password'>
                 <TextInput type='password' />
               </FormField>
+              <FormField label='confirm password'>
+                <TextInput type='password' />
+              </FormField>
             </Box>
             <Box flex={false} as='footer' align='start'>
-              <Button type='submit' label='Submit' onClick={onClose} primary />
+              <Button type='submit' label='Submit' onClick={onSubmit} primary />
             </Box>
           </Box>
         </Layer>

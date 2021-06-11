@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
 import placeholderMoviePoster from '../../assets/placeholderMoviePoster.png';
 
@@ -13,8 +14,25 @@ import {
 } from 'grommet';
 
 import AddToListButton from '../../shared/AddToListButton';
+import { useHistory } from 'react-router';
 
-const SearchListItem = ({ id, title, desc, poster, date }) => {
+interface SearchListItemProps {
+  id: number;
+  title: string;
+  desc: string;
+  poster?: string;
+  date?: string
+}
+
+const SearchListItem = ({ id, title, desc, poster, date }: SearchListItemProps) => {
+  const history = useHistory();
+
+  const onClickHandle = (e: any) => {
+    console.log(id);
+    
+    history.push(`/movie/${id}`);
+  };
+
   return (
     // TODO: split this component up into smaller, more reusable components
     <Card
@@ -48,6 +66,7 @@ const SearchListItem = ({ id, title, desc, poster, date }) => {
             size='small'
             alignSelf='end'
             margin={{ bottom: 'none' }}
+            onClick={onClickHandle}
           >
             {title}
           </Heading>

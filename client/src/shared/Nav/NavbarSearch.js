@@ -43,7 +43,7 @@ const NavbarSearch = () => {
         onKeyDown={handleSubmit}
         onChange={(e) => dispatch(updateQuery(e.target.value))}
         icon={<Search />}
-        placeholder='search ...'
+        placeholder='search for a movie! ...'
       />
     </Box>
   );

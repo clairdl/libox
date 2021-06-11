@@ -4,12 +4,12 @@ import { Box, DataTable } from 'grommet';
 
 import { columns } from './tableConfig';
 import { useAppSelector } from '../../hooks/reduxHooks';
-import { selectWatchlist } from '../../slices/list/listSlice';
+import { selectWatchedlist } from '../../slices/list/listSlice';
 
 const WatchlistTable = () => {
   const history = useHistory();
 
-  const tableData = Object.values(useAppSelector(selectWatchlist));
+  const tableData = Object.values(useAppSelector(selectWatchedlist));
 
   const onClickHandle = (e: any) => {
     // console.log(e.datum.id);
