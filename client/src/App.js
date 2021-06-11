@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Grommet } from 'grommet';
 import Navbar from './shared/Nav/Navbar';
 import Home from './pages/Home';
-import Watchlist from './pages/Watchlist/index';
+import { Watchlist, Watchedlist } from './pages/Watchlist/index';
 import Search from './pages/Search/index';
-import MovieDetails from './pages/MovieDetails/MovieDetails'
+import MovieDetails from './pages/MovieDetails/MovieDetails';
 
 const myTheme = {
   anchor: {
@@ -31,6 +31,9 @@ export default function App() {
           </Route>
           <Route path='/watchlist'>
             <Watchlist />
+          </Route>
+          <Route path='/watchedlist'>
+            <Watchedlist />
           </Route>
           <Route path='/search'>
             <Search />

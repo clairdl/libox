@@ -12,6 +12,7 @@ const Navbar = () => (
     <Nav direction='row' align='center'>
       <Anchor as={Link} to='/' label='home' />
       <Anchor as={Link} to='/watchlist' label='watchlist' />
+      <Anchor as={Link} to='/watchedlist' label='watchedlist' />
       <NavbarSearch />
 
       <Box direction='row' align='center' gap='small'>
