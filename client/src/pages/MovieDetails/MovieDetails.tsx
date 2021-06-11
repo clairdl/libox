@@ -19,6 +19,7 @@ import { MovieDetailsData, MovieCreditsData } from './types';
 import { useParams } from 'react-router-dom';
 
 const MovieDetails = () => {
+  
   const { id } = useParams<{ id }>();
   const [isLoading, setIsLoading] = useState(true);
   const [mvD, setMovieDetails] = useState({} as MovieDetailsData);
@@ -47,7 +48,7 @@ const MovieDetails = () => {
   useEffect(() => {
     const fac = new FastAverageColor();
     fac
-      .getColorAsync(`https://www.themoviedb.org/t/p/w300/${mvD.backdrop_path}`)
+      .getColorAsync(`https://www.themoviedb.org/t/p/w300/${mvD.backdrop_path || mvD.poster_path}`)
       .then((res) => {
         setCol(res.rgba);
         setIsLoading(false);
