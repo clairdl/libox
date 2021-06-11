@@ -24,7 +24,7 @@ const LoginBtn = () => {
   const onClose = () => setOpen(false);
 
   return (
-    <Box fill>
+    <Box>
       <Button icon={<Login />} label='Log in' onClick={onOpen} />
       {open && (
         <Layer
