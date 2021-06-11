@@ -1,3 +1,4 @@
 import Watchlist from './Watchlist';
+import Watchedlist from './Watchedlist';
 
-export default Watchlist
+export { Watchlist, Watchedlist }
