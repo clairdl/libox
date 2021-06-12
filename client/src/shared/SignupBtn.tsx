@@ -1,24 +1,12 @@
-/* eslint-disable no-unused-vars */
-
-import React from 'react';
+import { useState } from 'react';
 
 import { UserAdd, Close } from 'grommet-icons';
 
-import {
-  Box,
-  Button,
-  FormField,
-  Grommet,
-  Heading,
-  Layer,
-  Select,
-  TextArea,
-  TextInput,
-} from 'grommet';
+import { Box, Button, FormField, Heading, Layer, TextInput } from 'grommet';
 
 const SignupBtn = () => {
-  const [open, setOpen] = React.useState(false);
-  const [select, setSelect] = React.useState('');
+  const [open, setOpen] = useState(false);
+  // const [select, setSelect] = React.useState('');
 
   const onOpen = () => setOpen(true);
 
