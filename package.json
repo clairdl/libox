@@ -9,7 +9,7 @@
     "prod": "node server/dist/index.js",
     "dev": "nodemon server/dist/index.js",
     "lint": "eslint . --ext .ts",
-    "build": "tsc",
+    "heroku-postbuild": "tsc",
     "watch": "tsc -w"
   },
   "dependencies": {
