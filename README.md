@@ -1,8 +1,7 @@
 # libox
 
 Objectives:
-- Learn TypeScript
-- Learn Redux
+- refresher on TypeScript & Redux
 
 Strech goals:
 - auth
