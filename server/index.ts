@@ -11,21 +11,16 @@ dotenv.config();
 const app = express();
 
 // Serve static files from CRA
-app.use(express.static(path.join(__dirname, '..', '..', 'client', 'build')));
+app.use('/', express.static(path.join(__dirname, '..', '..', 'client', 'build')));
 
 // Middleware
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.set('query parser', 'simple');
 
 // Routes
 
-app.use('/', getRoutes);
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '..', '..', 'client', 'build', 'index.html'));
-});
+app.use(getRoutes);
 
 
 // Listen to provided port

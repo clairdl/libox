@@ -7,9 +7,10 @@
   "main": "",
   "scripts": {
     "prod": "node server/dist/index.js",
-    "watch": "tsc -w",
     "dev": "nodemon server/dist/index.js",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "build": "tsc",
+    "watch": "tsc -w"
   },
   "dependencies": {
     "axios": "^0.21.1",

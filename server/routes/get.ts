@@ -7,7 +7,6 @@ import { getMovieCredits } from '../tmdb/movies/getMovieCredits';
 const router = express.Router();
 
 router.get('/search', (req, res) => {
-  // Hacky solution for TS error
   const query = typeof req.query.query === 'string' ? req.query.query : undefined;
 
   searchMovie({ query, pageNumber: 1 })
