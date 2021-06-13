@@ -6,8 +6,9 @@
   "license": "ISC",
   "main": "",
   "scripts": {
+    "prod": "node server/dist/index.js",
     "watch": "tsc -w",
-    "server": "nodemon server/dist/index.js",
+    "dev": "nodemon server/dist/index.js",
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {

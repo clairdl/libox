@@ -3,11 +3,15 @@ import express from 'express';
 import morgan from 'morgan';
 import getRoutes from './routes/get';
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config();
 
 // Init
 const app = express();
+
+// Serve static files from CRA
+app.use(express.static(path.join(__dirname, '..', '..', 'client', 'build')));
 
 // Middleware
 app.use(morgan('dev'));
@@ -16,7 +20,13 @@ app.use(express.urlencoded({ extended: false }));
 // app.set('query parser', 'simple');
 
 // Routes
+
 app.use('/', getRoutes);
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '..', '..', 'client', 'build', 'index.html'));
+});
+
 
 // Listen to provided port
 const PORT = process.env.PORT || 3001;
