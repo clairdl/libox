@@ -22,6 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(getRoutes);
 
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '..', '..', 'client', 'build', 'index.html'));
+});
 
 // Listen to provided port
 const PORT = process.env.PORT || 3001;
