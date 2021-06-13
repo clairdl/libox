@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(getRoutes);
 
-app.get('/*', function (req, res) {
+app.get('/*', function (_, res) {
   res.sendFile(path.join(__dirname, '..', '..', 'client', 'build', 'index.html'));
 });
 
