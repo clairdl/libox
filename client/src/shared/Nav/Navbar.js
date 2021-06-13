@@ -10,7 +10,6 @@ import SignupBtn from '../SignupBtn';
 const Navbar = () => (
   <Header background='brand' pad={{ left: 'medium', vertical: 'xsmall' }}>
     <Nav direction='row' align='center'>
-      <Anchor as={Link} to='/' label='home' />
       <Anchor as={Link} to='/watchlist' label='watchlist' />
       <Anchor as={Link} to='/watchedlist' label='watchedlist' />
       <NavbarSearch />

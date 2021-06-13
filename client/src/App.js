@@ -1,9 +1,7 @@
-import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Grommet } from 'grommet';
 import Navbar from './shared/Nav/Navbar';
-import Home from './pages/Home';
 import { Watchlist, Watchedlist } from './pages/Watchlist/index';
 import Search from './pages/Search/index';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
@@ -26,9 +24,6 @@ export default function App() {
 
         <Switch>
           <Route path='/movie/:id' children={<MovieDetails />} />
-          <Route exact path='/'>
-            <Home />
-          </Route>
           <Route path='/watchlist'>
             <Watchlist />
           </Route>
