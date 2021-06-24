@@ -1,7 +1,14 @@
 # libox
+#### live: https://aqueous-earth-83063.herokuapp.com/
 
-Objectives:
-- refresher on TypeScript & Redux
+**Search for movies**
+![/search](https://i.postimg.cc/QdhVzzGP/Screenshot-2021-06-13-at-17-36-53.png)
 
-Strech goals:
-- auth
+**Get detailed info**
+![/movie](https://i.postimg.cc/SxJHmShz/Screenshot-2021-06-23-at-21-27-27.png)
+
+**Track progress with a watchlist**
+![](https://i.postimg.cc/h42CvkM8/Screenshot-2021-06-23-at-21-29-38.png)
+
+### Objectives
+- Learn Redux w/ TypeScript
