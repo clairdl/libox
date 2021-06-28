@@ -10,7 +10,7 @@ export const addMovieToSpecifiedList = createAsyncThunk(
   async (payload: GetMovieDetailsParams) => {
 
     const res = await axios.get(
-      `/movie/${payload.movieId}`
+      `api/movie/${payload.movieId}`
     );
 
     // Refine from raw response data

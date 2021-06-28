@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 // libs
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // redux
 import {
   selectStatus,
+  searchMovies,
   selectTotalResults,
+  updateQuery,
 } from '../../slices/search/searchSlice';
 // components
 import Spinner from '../../shared/Spinner';
@@ -11,6 +14,18 @@ import SearchList from './SearchList';
 import NoResults from '../../shared/NoResults';
 
 const Search = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const params: URLSearchParams = new URLSearchParams(window.location.search);
+    const queryValue = params.get("query");
+    console.log("Search useEffect")
+    if (queryValue !== null) {
+      dispatch(updateQuery(queryValue));
+      dispatch(searchMovies());
+    }
+  }, []);
+
   const totalResults = useSelector(selectTotalResults);
   const status = useSelector(selectStatus);
 

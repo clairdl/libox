@@ -6,7 +6,8 @@
   "license": "ISC",
   "main": "",
   "scripts": {
-    "prod": "node server/dist/index.js",
+    "ts-prod": "node server/dist/index.js",
+    "ts-dev": "nodemon server/dist/index.js",
     "dev": "nodemon server/dist/index.js",
     "lint": "eslint . --ext .ts",
     "heroku-postbuild": "tsc",

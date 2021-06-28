@@ -6,9 +6,10 @@ import { getMovieCredits } from '../tmdb/movies/getMovieCredits';
 
 const router = express.Router();
 
-router.get('/search', (req, res) => {
+router.get('/api/search', (req, res) => {
   const query = typeof req.query.query === 'string' ? req.query.query : undefined;
-
+  console.log('hi');
+  
   searchMovie({ query, pageNumber: 1 })
     .then(({ data }) => {
       res.json(data)
@@ -19,7 +20,7 @@ router.get('/search', (req, res) => {
     });
 });
 
-router.get('/movie/:id', (req, res) => {
+router.get('/api/movie/:id', (req, res) => {
   getMovieDetails({ id: parseInt(req.params.id, 10) })
     .then(({ data }) => {
       res.json(data)
@@ -30,7 +31,7 @@ router.get('/movie/:id', (req, res) => {
     });
 });
 
-router.get('/movie/:id/credits', (req, res) => {
+router.get('/api/movie/:id/credits', (req, res) => {
   getMovieCredits({ id: parseInt(req.params.id, 10) })
     .then(({ data }) => {
       res.json(data)
