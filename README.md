@@ -1,8 +1,7 @@
 # libox
+#### demo: https://aqueous-earth-83063.herokuapp.com/
 ### Why?
 - to learn Redux _with_ TypeScript
-
-#### demo: https://aqueous-earth-83063.herokuapp.com/
 
 **Search for movies**
 ![/search](https://i.postimg.cc/QdhVzzGP/Screenshot-2021-06-13-at-17-36-53.png)
