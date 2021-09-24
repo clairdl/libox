@@ -1,5 +1,5 @@
 # libox
-#### demo: https://aqueous-earth-83063.herokuapp.com/
+#### live demo: https://aqueous-earth-83063.herokuapp.com/
 ### Why?
 - to learn Redux _with_ TypeScript
 
