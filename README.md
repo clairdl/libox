@@ -1,14 +1,18 @@
 # libox
-#### live demo: https://aqueous-earth-83063.herokuapp.com/
-### Why?
-- to learn Redux _with_ TypeScript
 
-**Search for movies**
-![/search](https://i.postimg.cc/QdhVzzGP/Screenshot-2021-06-13-at-17-36-53.png)
+### live demo: https://aqueous-earth-83063.herokuapp.com/
 
-**Get detailed info**
-![/movie](https://i.postimg.cc/SxJHmShz/Screenshot-2021-06-23-at-21-27-27.png)
+### update: [heroku removed the free tier](https://help.heroku.com/RSBRUH58/removal-of-heroku-free-product-plans-faq) for some unknown reason, rip libox
+
+**Movie detail**
+![movie](./docs/movie_detail.png)
+
+**Search for your favorites**
+![search](./docs/search.png?raw=true)
 
 **Track progress with a watchlist**
-![](https://i.postimg.cc/h42CvkM8/Screenshot-2021-06-23-at-21-29-38.png)
+![watchlist](./docs/watchlist.png)
 
+## My favorite movies that nobody asked for
+
+- https://letterboxd.com/clair44/list/clair44s-top-100/
